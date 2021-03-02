@@ -1,0 +1,3 @@
+venv
+website/settings/local*.py
+*sqlite3

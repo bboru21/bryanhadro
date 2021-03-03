@@ -3,6 +3,6 @@ from django.shortcuts import render
 
 def index(request):
     context = {
-        'title': 'BryanHadro.com - Blog',
+        'title': 'BryanHadro.com - Homepage',
     }
-    return render(request, 'blog/index.html', context)
+    return render(request, 'website/index.html', context)

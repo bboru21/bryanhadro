@@ -129,7 +129,7 @@ STATIC_ROOT = f'{BASE_DIR}{STATIC_URL}'
 '''
     CKEditor
 '''
-CKEDITOR_BASEPATH = f'{STATIC_ROOT}/ckeditor/ckeditor'
+CKEDITOR_BASEPATH = f'{STATIC_ROOT}ckeditor/ckeditor'
 CKEDITOR_UPLOAD_PATH = 'ck-uploads/'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 

@@ -15,9 +15,14 @@ help:
 setup:
 	$(PYTHON) -m venv $(VENV)
 	$(VENV)/bin/pip3 install --upgrade pip
-	$(VENV)/bin/pip install -r requirements.txt
+	$(VENV)/bin/pip3 install -r requirements.txt
 	echo $(VENV) >> .gitignore
 	touch $(VENV)
+
+update:
+	$(VENV)/bin/pip3 install --upgrade pip
+	$(VENV)/bin/pip3 install -r requirements.txt
+
 
 startproject:
 	( \
@@ -47,6 +52,9 @@ makemigrations:
 
 migrate:
 	$(VENV)/bin/python manage.py migrate --settings $(PROJECT).settings.local
+
+collectstatic:
+	$(VENV)/bin/python manage.py collectstatic --settings $(PROJECT).settings.local
 
 clean:
 	-rm -rf $(VENV)

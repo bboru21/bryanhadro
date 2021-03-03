@@ -7,8 +7,16 @@
         <style type='text/css'>
             /* CSS */
             body {
-                font-family: Georgia, 'serif';
+                font-family: 'Hoefler Text', serif;
                 font-size: 1rem;
+            }
+
+            /*h1, h2, h3, h4, h5, h6 {
+                font-family: 'Futura', sans-serif;
+            }*/
+
+            a {
+                text-decoration: none;
             }
         </style>
 
@@ -18,7 +26,12 @@
     <body>
         <!-- menu -->
         <a href="{% url 'homepage' %}">Home</a>
+        &#9670;
         <a href="{% url 'blog_index' %}">Blog</a>
+        &#9670;
+        <a href="#TODO">Music</a>
+        &#9670;
+        <a href="#TODO">Contact</a>
 
         <div>
             {% block 'content' %}

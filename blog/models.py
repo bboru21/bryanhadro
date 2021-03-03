@@ -1,5 +1,22 @@
 from django.db import models
 
-# Create your models here.
+from ckeditor_uploader.fields import RichTextUploadingField
+
+class Post(models.Model):
+
+    title = models.CharField(max_length=255, null=False)
+    urlname = models.URLField(db_column='urlname', null=False)
+    content = RichTextUploadingField(config_name='default', null=True)
+
+    class Meta:
+        # db_table = 'blog_post'
+        pass
+
+    def __str__(self):
+        return f'{self.title} ({self.pk})'
+
+
+
+
 
 

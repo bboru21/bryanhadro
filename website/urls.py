@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.admin.views.decorators import staff_member_required
 from django.urls import (
     include,
     path,
+    re_path,
 )
 
 from . import views
@@ -25,4 +27,6 @@ urlpatterns = [
     path('', views.index, name='homepage'),
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
+
+    re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]

@@ -5,7 +5,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class Post(models.Model):
 
     title = models.CharField(max_length=255, null=False)
-    urlname = models.URLField(db_column='urlname', null=False)
+    urlname = models.URLField(db_column='urlname', null=False, unique=True)
     content = RichTextUploadingField(config_name='default', null=True)
 
     class Meta:
@@ -14,9 +14,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title} ({self.pk})'
-
-
-
-
-
-

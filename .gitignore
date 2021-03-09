@@ -1,3 +1,4 @@
 venv
 website/settings/local*.py
 *sqlite3
+__pycache__

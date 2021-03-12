@@ -1,4 +1,5 @@
 venv
 website/settings/local*.py
+website/settings/prod*.py
 *sqlite3
 __pycache__

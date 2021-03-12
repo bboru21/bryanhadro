@@ -1,6 +1,11 @@
-{% extends 'website/base.html' %}
+{% extends 'website/base.html' %}s
 
 {% block 'content' %}
     <h1>Blog</h1>
-    <p>Coming soon!</p>
+    {% for post in posts %}
+    <div>
+        <h2>{{post.title}}</h2>
+        <div>{{post.content | safe}}</div>
+    </div>
+    {% endfor %}
 {% endblock 'content' %}

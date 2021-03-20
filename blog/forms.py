@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.text import slugify
+import datetime
 
 from .models import Post
 
@@ -17,6 +18,9 @@ class PostForm(forms.ModelForm):
             #     pass
 
             instance.urlname = urlname
+
+        if not instance.created_date:
+            instance.created_date = datetime.datetime.now()
 
         if commit:
             instance.save()

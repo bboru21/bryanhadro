@@ -1,7 +1,8 @@
 PYTHON = /usr/bin/python3
 VENV = venv
 PROJECT = website
-APP = blog
+APP_1 = blog
+APP_2 = music
 
 .PHONY = help setup clean
 
@@ -40,7 +41,8 @@ startproject:
 startapp:
 	( \
 		source $(VENV)/bin/activate; \
-		django-admin startapp $(APP); \
+		django-admin startapp $(APP_1); \
+		django-admin startapp $(APP_2); \
 		deactivate; \
 	)
 

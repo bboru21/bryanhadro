@@ -1,0 +1,29 @@
+{% extends 'website/base.html' %}s
+
+{% block 'content' %}
+    <h1>Music</h1>
+
+    <p>I've been playing guitar since college, and have gathered quite an eclectic repertoire. I'm working on updating a full list and recording videos. Check out my <a href="https://www.youtube.com/channel/UCUG607ZYsXytL9eb9MXqVLg/videos" target="_blank">Youtube Channel</a> for a full list!</p>
+    <p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
+
+    {% for category in categories %}
+        {% if category.songs %}
+        <div>
+            <h2>{{category.name}}</h2>
+            <ul>
+                {% for song in category.songs.all %}
+                <li>
+                    {% if song.youtube_video_link %}
+                        <a href="{{song.youtube_video_link}}" target="_blank">
+                            {{song.artist.name}} - {{song.name}}
+                        </a>
+                    {% else %}
+                        {{song.artist.name}} - {{song.name}}
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock 'content' %}

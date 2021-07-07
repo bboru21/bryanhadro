@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Category
+
+
+def index(request):
+    context = {
+        'title': 'BryanHadro.com - Music',
+        'categories': Category.objects.all(),
+    }
+    return render(request, 'music/index.html', context)

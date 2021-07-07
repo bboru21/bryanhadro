@@ -27,6 +27,7 @@ urlpatterns = [
     path('', views.index, name='homepage'),
     path('resume/', views.resume, name='resume'),
     path('blog/', include('blog.urls')),
+    path('music/', include('music.urls')),
     path('admin/', admin.site.urls),
 
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),

@@ -1,11 +1,17 @@
 from django.db import models
 
 
+_MAX_URL_LENGTH = 2048
+
+
 class Artist(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
         ordering = ['name']
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
@@ -13,6 +19,11 @@ class Category(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
 
 
 class Song(models.Model):
@@ -21,8 +32,22 @@ class Song(models.Model):
         Artist,
         on_delete=models.SET_NULL,
         null=True,
+        related_name='songs',
+
     )
-    category = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(
+        Category,
+        blank=True,
+        related_name='songs',
+    )
+    youtube_video_link = models.URLField(
+        max_length=_MAX_URL_LENGTH,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         ordering = ['artist', 'name']
+
+    def __str__(self):
+        return self.name

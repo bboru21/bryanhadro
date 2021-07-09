@@ -6,9 +6,17 @@ from .models import (
     Song,
 )
 
+from .forms import (
+    ArtistAdminForm,
+)
+
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    form = ArtistAdminForm
+
+    readonly_fields = ('sort_name',)
+    ordering = ('sort_name',)
+    list_display = ('name', 'sort_name',)
 
 
 @admin.register(Category)
@@ -19,4 +27,5 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
     fields = ('name', 'artist', 'categories', 'youtube_video_link',)
+    list_display = ('name', 'artist',)
 

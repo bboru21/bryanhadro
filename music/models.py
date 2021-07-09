@@ -15,7 +15,7 @@ class Artist(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.name
+        return self.sort_name
 
 
 class Category(models.Model):

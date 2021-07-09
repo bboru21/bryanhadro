@@ -6,6 +6,10 @@ _MAX_URL_LENGTH = 2048
 
 class Artist(models.Model):
     name = models.CharField(max_length=255)
+    sort_name = models.CharField(
+        max_length=255,
+        null=True,
+    )
 
     class Meta:
         ordering = ['name']

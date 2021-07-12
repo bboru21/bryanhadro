@@ -3,6 +3,7 @@ VENV = venv
 PROJECT = website
 APP_1 = blog
 APP_2 = music
+APP_3 = images
 
 .PHONY = help setup clean
 
@@ -43,6 +44,7 @@ startapp:
 		source $(VENV)/bin/activate; \
 		django-admin startapp $(APP_1); \
 		django-admin startapp $(APP_2); \
+		django-admin startapp $(APP_3); \
 		deactivate; \
 	)
 

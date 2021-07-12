@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'music.apps.MusicConfig',
+    'images.apps.ImagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -126,6 +127,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = f'{BASE_DIR}{STATIC_URL}'
+
+IMAGES_URL = f'{STATIC_URL}images/'
 
 '''
     CKEditor

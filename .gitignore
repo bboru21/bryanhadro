@@ -5,4 +5,4 @@ website/settings/prod*.py
 __pycache__
 
 README-local.md
-static/images/*
+static/images/uploads/*

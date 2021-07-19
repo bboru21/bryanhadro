@@ -77,7 +77,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            normpath(join(SITE_ROOT, 'templates')),
+            normpath(join(DJANGO_ROOT, 'templates')),
             'blog/templates',
         ],
         'APP_DIRS': True,
@@ -170,9 +170,9 @@ STATICFILES_FINDERS = (
 )
 ########## END STATIC FILE CONFIGURATION
 
-'''
-    CKEditor
-'''
+
+########## CKEDITOR CONFIGURATION
+
 CKEDITOR_BASEPATH = f'{STATIC_URL}ckeditor/ckeditor/'
 CKEDITOR_UPLOAD_PATH = 'ck-uploads/'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
@@ -180,8 +180,19 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_FORCE_JPEG_COMPRESSION = True
 CKEDITOR_IMAGE_QUALITY = 75 # default
 
+print('***', CKEDITOR_BASEPATH, CKEDITOR_UPLOAD_PATH)
+
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Basic',
     },
+    'blogContent': {
+        'toolbar': [
+            ['Source'],
+            ['Bold', 'Italic'],
+            ['Image'],
+        ],
+    },
 }
+
+########## END CKEDITOR CONFIGURATION

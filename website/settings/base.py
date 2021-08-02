@@ -8,12 +8,30 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
+Additional settings as according to Two Scoops of Django:
+https://github.com/twoscoops/django-twoscoops-project/blob/develop/project_name/project_name/settings/base.py
+
 """
 
-from pathlib import Path
+from os.path import abspath, basename, dirname, join, normpath
+from sys import path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+########## PATH CONFIGURATION
+# Absolute filesystem path to the Django project directory:
+DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+
+# Absolute filesystem path to the top-level project folder:
+SITE_ROOT = dirname(DJANGO_ROOT)
+
+# Site name:
+SITE_NAME = basename(DJANGO_ROOT)
+
+# Add our project to our pythonpath, this way we don't need to type our project
+# name in our dotted import paths:
+path.append(DJANGO_ROOT)
+########## END PATH CONFIGURATION
 
 
 # Quick-start development settings - unsuitable for production
@@ -59,7 +77,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            f'{BASE_DIR}/templates',
+            normpath(join(DJANGO_ROOT, 'templates')),
             'blog/templates',
         ],
         'APP_DIRS': True,
@@ -83,7 +101,7 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': f'{DJANGO_ROOT}/db.sqlite3',
     }
 }
 
@@ -124,21 +142,61 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = f'{BASE_DIR}{STATIC_URL}'
+########## MEDIA CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-root
+MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 
-'''
-    CKEditor
-'''
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
+MEDIA_URL = '/media/'
+########## END MEDIA CONFIGURATION
+
+
+########## STATIC FILE CONFIGURATION
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-root
+STATIC_ROOT = normpath(join(SITE_ROOT, 'assets'))
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    normpath(join(SITE_ROOT, 'static')),
+)
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+########## END STATIC FILE CONFIGURATION
+
+
+########## CKEDITOR CONFIGURATION
+
 CKEDITOR_BASEPATH = f'{STATIC_URL}ckeditor/ckeditor/'
 CKEDITOR_UPLOAD_PATH = 'ck-uploads/'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_FORCE_JPEG_COMPRESSION = True
-CKEDITOR_IMAGE_QUALITY = 75 # default
+CKEDITOR_IMAGE_QUALITY = 85 # default
 
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Basic',
     },
+    'blogContent': {
+        'toolbar': [  # https://ckeditor.com/latest/samples/old/toolbar/toolbar.html
+            ['Source'],
+            ['Bold', 'Italic', 'Link', 'Unlink'],
+            ['Image'],
+        ],
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'image',        # https://ckeditor.com/cke4/addon/image
+            'image2',       # https://ckeditor.com/cke4/addon/image2
+            'uploadimage',  # https://ckeditor.com/cke4/addon/uploadimage
+        ]),
+    },
 }
+
+########## END CKEDITOR CONFIGURATION

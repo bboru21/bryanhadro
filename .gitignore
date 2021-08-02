@@ -3,5 +3,12 @@ website/settings/local*.py
 website/settings/prod*.py
 *sqlite3
 __pycache__
+.DS_Store
 
 README-local.md
+
+# media and static assets
+media/*
+!media/README.md
+assets/*
+!assets/README.md

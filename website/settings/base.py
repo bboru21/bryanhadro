@@ -178,20 +178,24 @@ CKEDITOR_UPLOAD_PATH = 'ck-uploads/'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_FORCE_JPEG_COMPRESSION = True
-CKEDITOR_IMAGE_QUALITY = 75 # default
-
-print('***', CKEDITOR_BASEPATH, CKEDITOR_UPLOAD_PATH)
+CKEDITOR_IMAGE_QUALITY = 85 # default
 
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Basic',
     },
     'blogContent': {
-        'toolbar': [
+        'toolbar': [  # https://ckeditor.com/latest/samples/old/toolbar/toolbar.html
             ['Source'],
-            ['Bold', 'Italic'],
+            ['Bold', 'Italic', 'Link', 'Unlink'],
             ['Image'],
         ],
+        'tabSpaces': 4,
+        'extraPlugins': ','.join([
+            'image',        # https://ckeditor.com/cke4/addon/image
+            'image2',       # https://ckeditor.com/cke4/addon/image2
+            'uploadimage',  # https://ckeditor.com/cke4/addon/uploadimage
+        ]),
     },
 }
 

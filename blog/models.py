@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -16,3 +17,12 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title} ({self.pk})'
+
+    @property
+    def url(self):
+        return reverse('blog_post', kwargs={
+            'year': self.created_date.strftime('%Y'),
+            'month': self.created_date.strftime('%m'),
+            'day': self.created_date.strftime('%d'),
+            'urlname': self.urlname,
+        })

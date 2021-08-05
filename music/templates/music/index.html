@@ -1,4 +1,37 @@
-{% extends 'website/base.html' %}s
+{% extends 'website/base.html' %}
+
+{% block 'head_static' %}
+<style>
+.etichetta-tab {
+    display: inline-block;
+    font-weight:  500;
+    margin-right:  .5rem;
+    border:  1px solid #001514;
+    padding:  0.5rem;
+    position:  relative;
+    margin-bottom:  0.5rem;
+    border-radius:  5px;
+    color:  #FBFFFE;
+    background-color:  #00524E;
+    cursor:  pointer;
+}
+.etichetta-tab:hover {
+    background-color:  #007A74;
+    color: #FBFFFE;
+}
+.etichetta-tab.active {
+    background-color:  #00A39B;
+}
+.etichetta-content {
+    display: none;
+    border:  1px solid #001514;
+    z-index:  10;
+}
+.etichetta-content.active {
+    display:  block;
+}
+</style>
+{% endblock 'head_static' %}
 
 {% block 'content' %}
     <h1>Music</h1>
@@ -6,24 +39,77 @@
     <p>I've been playing guitar since college, and have gathered quite an eclectic repertoire. I'm working on updating a full list and recording videos. Check out my <a href="https://www.youtube.com/channel/UCUG607ZYsXytL9eb9MXqVLg/videos" target="_blank">Youtube Channel</a> for a full list!</p>
     <p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
 
-    {% for category in categories %}
-        {% if category.songs %}
-        <div>
-            <h2>{{category.name}}</h2>
-            <ul>
-                {% for song in category.songs.all %}
-                <li>
-                    {% if song.youtube_video_link %}
-                        <a href="{{song.youtube_video_link}}" target="_blank">
+    <div id="set-list">
+        <div class="etichetta-tabs">
+        {% for category in categories %}
+            <button class="etichetta-tab">{{category.name}}</button>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% for category in categories %}
+            <div class="etichetta-content">
+                <ul>
+                    {% for song in category.songs.all %}
+                    <li>
+                        {% if song.youtube_video_link %}
+                            <a href="{{song.youtube_video_link}}" target="_blank">
+                                {{song.artist.name}} - {{song.name}}
+                            </a>
+                        {% else %}
                             {{song.artist.name}} - {{song.name}}
-                        </a>
-                    {% else %}
-                        {{song.artist.name}} - {{song.name}}
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
-    {% endfor %}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
 {% endblock 'content' %}
+
+{% block 'body_bottom_static' %}
+<script>
+    (function(document) {
+
+        class Etichetta {
+            id = null;
+            tabs = null
+            content = null
+            constructor(id) {
+                this.id = id;
+                this.tabs = document.querySelectorAll(`#${this.id} .etichetta-tab`);
+                this.content = document.querySelectorAll(`#${this.id} .etichetta-content`);
+
+                [...this.tabs].forEach((tab, index) => {
+                    this.addClickHandler(tab, index);
+                });
+            }
+            activate(node) {
+                node.classList.add('active');
+            }
+            deactivate(nodeList) {
+                [...nodeList].forEach(node => {
+                    node.classList.remove('active');
+                });
+            }
+            addClickHandler(tab, index) {
+                tab.addEventListener('click', event => {
+                    event.preventDefault();
+
+                    this.deactivate(this.tabs);
+                    this.deactivate(this.content);
+
+                    this.activate(tab);
+                    this.activate(this.content[index]);
+                });
+            }
+        }
+
+        const etichetta = new Etichetta('set-list');
+        etichetta.tabs[0].click();
+
+    }(document));
+</script>
+{% endblock 'body_bottom_static' %}

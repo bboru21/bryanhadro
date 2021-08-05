@@ -4,8 +4,10 @@ from .models import Category
 
 
 def index(request):
+    categories = Category.objects.exclude(songs__isnull=True)
+
     context = {
         'title': 'BryanHadro.com - Music',
-        'categories': Category.objects.all(),
+        'categories': categories,
     }
     return render(request, 'music/index.html', context)

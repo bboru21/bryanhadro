@@ -4,7 +4,9 @@ from .models import Category
 
 
 def index(request):
-    categories = Category.objects.exclude(songs__isnull=True)
+    categories = Category.objects \
+        .filter(primary=True) \
+        .exclude(songs__isnull=True)
 
     context = {
         'title': 'BryanHadro.com - Music',

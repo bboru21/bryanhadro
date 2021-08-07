@@ -21,11 +21,12 @@ class ArtistAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fields = ('name', 'primary',)
 
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
     fields = ('name', 'artist', 'categories', 'youtube_video_link',)
     list_display = ('name', 'artist',)
+    list_filter = ('categories',)
 

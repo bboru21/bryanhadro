@@ -20,9 +20,10 @@ class Artist(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    primary = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-primary', 'name']
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 

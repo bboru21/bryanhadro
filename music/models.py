@@ -5,7 +5,7 @@ _MAX_URL_LENGTH = 2048
 
 
 class Artist(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     sort_name = models.CharField(
         max_length=255,
         null=True,

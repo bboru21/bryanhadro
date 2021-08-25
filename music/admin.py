@@ -8,6 +8,7 @@ from .models import (
 
 from .forms import (
     ArtistAdminForm,
+    SongAdminForm,
 )
 
 @admin.register(Artist)
@@ -27,7 +28,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Song)
 class SongAdmin(admin.ModelAdmin):
-    fields = ('name', 'artist', 'categories', 'youtube_video_link',)
+    form = SongAdminForm
     list_display = ('name', 'artist',)
     list_filter = ('categories',)
     autocomplete_fields = ('artist',)

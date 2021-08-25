@@ -4,6 +4,7 @@ from django import forms
 
 from .models import (
     Artist,
+    Song,
 )
 
 class ArtistAdminForm(forms.ModelForm):
@@ -29,3 +30,19 @@ class ArtistAdminForm(forms.ModelForm):
     class Meta:
         model = Artist
         fields = ('name','sort_name',)
+
+
+class SongAdminForm(forms.ModelForm):
+
+    def clean(self):
+
+        # validate song name and artist are unique
+        name = self.cleaned_data.get('name')
+        artist = self.cleaned_data.get('artist')
+
+        if Song.objects.filter(name=name, artist__name=artist.name).count() > 0:
+            raise forms.ValidationError("Song and Artist already exist.")
+
+    class Meta:
+        model = Song
+        fields = ('name', 'artist', 'categories', 'youtube_video_link',)

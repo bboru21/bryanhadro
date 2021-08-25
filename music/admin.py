@@ -31,4 +31,5 @@ class SongAdmin(admin.ModelAdmin):
     list_display = ('name', 'artist',)
     list_filter = ('categories',)
     autocomplete_fields = ('artist',)
+    search_fields = ('name', 'artist__name',)
 

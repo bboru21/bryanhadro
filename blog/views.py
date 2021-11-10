@@ -15,7 +15,6 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def post(request, year, month, day, urlname):
-    print('werking')
     post = get_object_or_404(Post, urlname=urlname)
 
     context = {

@@ -21,9 +21,12 @@ setup:
 	touch $(VENV)
 
 update:
-	$(VENV)/bin/pip3 install --upgrade pip
-	$(VENV)/bin/pip3 install -r requirements.txt
-
+	( \
+		source $(VENV)/bin/activate; \
+		pip install --upgrade pip; \
+		pip install -r requirements.txt; \
+		deactivate; \
+	)
 
 startproject:
 	( \

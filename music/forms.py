@@ -35,12 +35,13 @@ class ArtistAdminForm(forms.ModelForm):
 class SongAdminForm(forms.ModelForm):
 
     def clean(self):
+        super().clean()
 
         # validate song name and artist are unique
         name = self.cleaned_data.get('name')
         artist = self.cleaned_data.get('artist')
 
-        if Song.objects.filter(name=name, artist__name=artist.name).count() > 0:
+        if Song.objects.exclude(pk=self.instance.pk).filter(name=name, artist__name=artist.name).count() > 0:
             raise forms.ValidationError("Song and Artist already exist.")
 
     class Meta:

@@ -3,6 +3,14 @@ from django.urls import reverse
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
+class PostCategory(models.Model):
+    name = models.CharField(max_length=255, null=False)
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
 
     title = models.CharField(max_length=255, null=False)
@@ -10,6 +18,12 @@ class Post(models.Model):
     content = RichTextUploadingField(config_name='blogContent', null=True)
     created_date = models.DateTimeField(null=True)
     modified_date = models.DateTimeField(auto_now=True)
+    categories = models.ManyToManyField(
+        PostCategory,
+        blank=True,
+        default=None,
+        related_name='posts',
+    )
 
     class Meta:
         # db_table = 'blog_post'
@@ -26,3 +40,6 @@ class Post(models.Model):
             'day': self.created_date.strftime('%d'),
             'urlname': self.urlname,
         })
+
+
+

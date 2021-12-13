@@ -6,7 +6,6 @@ from .models import Post
 
 class PostForm(forms.ModelForm):
     model = Post
-    fields = ('title', 'content', 'urlname',)
 
     def save(self, commit=True):
         instance = super(PostForm, self).save(commit=False)

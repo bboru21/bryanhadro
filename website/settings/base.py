@@ -190,6 +190,7 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
     },
     'blogContent': {
+        'allowedContent': True,
         'toolbar': [  # https://ckeditor.com/latest/samples/old/toolbar/toolbar.html
             ['Source'],
             ['Bold', 'Italic', 'Link', 'Unlink'],

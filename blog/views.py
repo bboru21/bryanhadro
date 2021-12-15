@@ -7,7 +7,7 @@ from .models import Post
 
 def index(request):
 
-    posts = Post.objects.all()
+    posts = Post.objects.filter(active=True)
     context = {
         'title': 'BryanHadro.com - Blog',
         'posts': posts,
@@ -15,7 +15,7 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def post(request, year, month, day, urlname):
-    post = get_object_or_404(Post, urlname=urlname)
+    post = get_object_or_404(Post, urlname=urlname, active=True)
 
     context = {
         'title': f'BryanHadro.com - Blog: {post.title}',

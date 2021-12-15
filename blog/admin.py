@@ -9,7 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ('urlname',)
     autocomplete_fields = ('categories',)
 
-    fields = ('title', 'content', 'created_date', 'urlname', 'categories',)
+    fields = ('title', 'content', 'created_date', 'urlname', 'categories', 'active',)
 
 
 @admin.register(PostCategory)

@@ -24,6 +24,7 @@ class Post(models.Model):
         default=None,
         related_name='posts',
     )
+    active = models.BooleanField(default=True)
 
     class Meta:
         # db_table = 'blog_post'

@@ -1,4 +1,5 @@
 {% extends 'website/base.html' %}
+{% load music_extras %}
 
 {% block 'head_static' %}
 <style>
@@ -42,7 +43,7 @@
     <div id="set-list">
         <div class="etichetta-tabs">
         {% for category in categories %}
-            <button class="etichetta-tab">{{category.name}}</button>
+            <button class="etichetta-tab" id="{{category.name|text_to_node_id}}">{{category.name}}</button>
         {% endfor %}
     </div>
 
@@ -75,14 +76,15 @@
 
         class Etichetta {
             id = null;
-            tabs = null
-            content = null
+            tabs = null;
+            tabIds = [];
+            content = null;
             constructor(id) {
                 this.id = id;
                 this.tabs = document.querySelectorAll(`#${this.id} .etichetta-tab`);
                 this.content = document.querySelectorAll(`#${this.id} .etichetta-content`);
-
                 [...this.tabs].forEach((tab, index) => {
+                    this.tabIds.push(tab.id);
                     this.addClickHandler(tab, index);
                 });
             }
@@ -103,12 +105,26 @@
 
                     this.activate(tab);
                     this.activate(this.content[index]);
+
+                    window.location.hash = `#${tab.id}`;
                 });
             }
         }
 
+        // instantiate the tabs
         const etichetta = new Etichetta('set-list');
-        etichetta.tabs[0].click();
+
+        // set the current tab based on valid hash
+        let currentTab = null;
+        let hash = window.location.hash;
+        if (etichetta.tabIds.includes( hash.slice(1) )) {
+            currentTab = document.querySelector(window.location.hash);
+        } else {
+            currentTab = etichetta.tabs[0];
+        }
+
+        // activate the current tab
+        currentTab.click();
 
     }(document));
 </script>

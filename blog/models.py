@@ -28,7 +28,7 @@ class Post(models.Model):
 
     class Meta:
         # db_table = 'blog_post'
-        pass
+        ordering = ('-created_date',)
 
     def __str__(self):
         return f'{self.title} ({self.pk})'

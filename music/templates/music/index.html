@@ -1,4 +1,5 @@
 {% extends 'website/base.html' %}
+{% load static %}
 {% load music_extras %}
 
 {% block 'head_static' %}
@@ -7,25 +8,26 @@
     display: inline-block;
     font-weight:  500;
     margin-right:  .5rem;
-    border:  1px solid #001514;
+    border:  1px solid #404040;
     padding:  0.5rem;
     position:  relative;
     margin-bottom:  0.5rem;
     border-radius:  5px;
     color:  #FBFFFE;
-    background-color:  #00524E;
+    background-color:  #696969;
     cursor:  pointer;
 }
 .etichetta-tab:hover {
-    background-color:  #007A74;
+    background-color:  #C0C0C0;
     color: #FBFFFE;
+    text-shadow: 1px 1px 3px #696969;
 }
 .etichetta-tab.active {
-    background-color:  #00A39B;
+    background-color:  #A9A9A9;
 }
 .etichetta-content {
     display: none;
-    border:  1px solid #001514;
+    border:  1px solid #404040;
     z-index:  10;
 }
 .etichetta-content.active {
@@ -37,8 +39,15 @@
 {% block 'content' %}
     <h1>Music</h1>
 
-    <p>I've been playing guitar since college, and have gathered quite an eclectic repertoire. I'm working on updating a full list and recording videos. Check out my <a href="https://www.youtube.com/channel/UCUG607ZYsXytL9eb9MXqVLg/videos" target="_blank">Youtube Channel</a> for a full list!</p>
-    <p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
+    <div>
+        {# <img src="{% static 'st-patricks-day-bw.jpg' %}" width="300px" height="225px" style="float: right;" /> #}
+
+        <div>
+            <p>I've been playing guitar since college, and have acquired quite an eclectic repertoire performing at parties, wineries and breweries in the area. I'm working on updating a full list and recording videos. Check out my <a href="https://www.youtube.com/channel/UCUG607ZYsXytL9eb9MXqVLg/videos" target="_blank">Youtube Channel</a> for a full list!</p>
+            <p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
+        </div>
+        <div style="height: 0; width: 100%; clear: right;"></div>
+    </div>
 
     <div id="set-list">
         <div class="etichetta-tabs">

@@ -5,9 +5,14 @@ from django.http import (
 from django.shortcuts import render
 from django.conf import settings
 
+from blog.models import Post
+
 def index(request):
+    posts = Post.objects.filter(active=True)
+
     context = {
         'title': 'BryanHadro.com - Homepage',
+        'posts': posts[:5],
     }
     return render(request, 'website/index.html', context)
 

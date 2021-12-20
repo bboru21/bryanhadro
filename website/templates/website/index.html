@@ -1,13 +1,50 @@
 {% extends 'website/base.html' %}
 
+{% block 'head_static' %}
+    {{ block.super }}
+    <style>
+        .main-content-container {
+            display:  flex;
+            flex-direction:  row;
+            flex-wrap:  wrap;
+            justify-content:  space-between;
+
+        }
+        .main-content
+        .main-content-aside {
+            flex-basis:  100%;
+        }
+        @media screen and (min-width:  480px) {
+            .main-content {
+                flex-basis:  50%;
+            }
+            .main-content-aside {
+                flex-basis:  50%;
+            }
+        }
+    </style>
+{% endblock 'head_static' %}
+
 {% block 'content' %}
-    <h1>Homepage</h1>
 
-
-<p>Welcome to my site! It's a bit of a work-in-progress as I migrate from my old Synology/Wordpress hosting setup to Digital Ocean/Django, but I hope to have the blog up and running soon!</p>
-
-<p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
-
-<p>Cheers!</p>
+<div class="main-content-container">
+    <div class="main-content">
+        <h1>Homepage</h1>
+        <p>Welcome to my site! I'm a Python/Django full-stack developer, who dabbles in guitar on the side.</p>
+        <p>If you'd like to get in contact, please e-mail me at <a href="mailto:bryan.e.hadro@gmail.com">bryan.e.hadro@gmail.com</a>.</p>
+        <p>Cheers!</p>
+    </div>
+    <div class="main-content-aside">
+        <h2>Recent Posts</h2>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{{post.url}}">{{post.title}}</a>&nbsp;
+                    (<time datetime="{{post.created_date}}">{{post.created_date}}</time>)
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 
 {% endblock 'content' %}

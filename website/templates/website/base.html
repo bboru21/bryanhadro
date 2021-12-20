@@ -47,6 +47,11 @@
             .byline {
                 color: #008F88;
             }
+            .menu {
+                background-color:  #FBFFFE;
+                white-space:  nowrap;
+                overflow-x: scroll;
+            }
         </style>
 
         {% block 'head_static' %}
@@ -54,15 +59,17 @@
     </head>
     <body>
         <!-- menu -->
-        <a href="{% url 'homepage' %}">Home</a>
-        &#9670;
-        <a href="{% url 'blog_index' %}">Blog</a>
-        &#9670;
-        <a href="{% url 'music_index' %}">Music</a>
-        &#9670;
-        <a href="{% url 'resume' %}">Resume</a>
-        &#9670;
-        <a href="https://github.com/bboru21?tab=repositories" target="_blank">Github</a>
+        <div class="menu">
+            <a href="{% url 'homepage' %}">Home</a>
+            &#9670;
+            <a href="{% url 'blog_index' %}">Blog</a>
+            &#9670;
+            <a href="{% url 'music_index' %}">Music</a>
+            &#9670;
+            <a href="{% url 'resume' %}">Resume</a>
+            &#9670;
+            <a href="https://github.com/bboru21?tab=repositories" target="_blank">Github</a>
+        </div>
 
         <div>
             {% block 'content' %}

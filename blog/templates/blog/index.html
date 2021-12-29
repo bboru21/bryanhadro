@@ -1,10 +1,24 @@
-{% extends 'website/base.html' %}s
+{% extends 'website/base.html' %}
+
+{% block 'head_static' %}
+<style>
+    pre {
+        border:  1px solid #999;
+        padding:  0.5rem;
+        border-radius:  3px;
+        background-color:  #CCC;
+    }
+    .blog-post-container {
+        border-bottom:  1px solid #999;
+    }
+</style>
+{% endblock 'head_static' %}
 
 {% block 'content' %}
     <h1>Blog</h1>
     <p>Sometimes I write, sometimes it's worth reading. Check it out below.</p>
     {% for post in posts %}
-    <div>
+    <div class="blog-post-container">
         <h2>
             <a href={{post.url}}>{{post.title}}</a>
         </h2>

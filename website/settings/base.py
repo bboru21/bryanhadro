@@ -43,7 +43,15 @@ SECRET_KEY = None
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
+########## BEGIN HOST AND DOMAIN CONFIGURATION
+
 ALLOWED_HOSTS = []
+
+PROTOCOL = "http"
+WEBSITE_URL = f"{PROTOCOL}://www.bryanhadro.com"
+
+########## END HOST AND DOMAIN CONFIGURATION
 
 
 SITE_ID = 1

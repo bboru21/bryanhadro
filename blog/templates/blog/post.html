@@ -1,5 +1,13 @@
 {% extends 'blog/index.html' %}
 
+{% block 'head_meta' %}
+    <meta property="og:title" content="{{post.title}}" />
+    <meta property="og:url" content="{{url}}" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="{{post.created_date|date:'c'}}" />
+    <meta property="article:modified_time" content="{{post.modified_date|date:'c'}}" />
+{% endblock 'head_meta' %}
+
 {% block 'content' %}
     <h1>{{post.title}}</h1><span class="byline">{{post.created_date}}</span>
     <div>{{post.content | safe}}</div>

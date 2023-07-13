@@ -6,6 +6,8 @@
         {% if keywords %}
         <meta name="keywords" content="{{keywords|join:","}}" />
         {% endif %}
+        {% block 'head_meta' %}
+        {% endblock 'head_meta' %}
 
         <title>{{title}}</title>
 
@@ -24,7 +26,8 @@
             */
             body {
                 font-family: 'Hoefler Text', serif;
-                font-size: 1rem;
+                font-size: 1.25rem;
+                line-height: 1.5rem;
                 padding: 1rem;
                 color: #001514;
                 background-color: #FBFFFE;
@@ -33,6 +36,14 @@
             /*h1, h2, h3, h4, h5, h6 {
                 font-family: 'Futura', sans-serif;
             }*/
+
+            #content {
+                max-width: 1300px;
+                margin: 0 2rem;
+                @media (min-width: 1300px) {
+                    margin: 0 auto;
+                }
+            }
 
             a {
                 text-decoration: none;
@@ -70,7 +81,7 @@
             <a href="https://github.com/bboru21?tab=repositories" target="_blank">Github</a>
         </div>
 
-        <div>
+        <div id="content">
             {% block 'content' %}
             {% endblock 'content' %}
         </div>

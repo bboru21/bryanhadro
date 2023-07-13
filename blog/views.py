@@ -4,6 +4,7 @@ from django.shortcuts import (
     render,
 )
 from .models import Post
+from django.conf import settings
 
 def index(request):
 
@@ -21,5 +22,6 @@ def post(request, year, month, day, urlname):
         'title': f'BryanHadro.com - Blog: {post.title}',
         'post': post,
         'keywords': [category.lower() for category in post.categories.all().values_list('name', flat=True)],
+        'url': f'{settings.WEBSITE_URL}{post.url}',
     }
     return render(request, 'blog/post.html', context)

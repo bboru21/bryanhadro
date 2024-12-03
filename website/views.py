@@ -17,4 +17,4 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 def resume(request):
-    return FileResponse(open(f'{settings.STATIC_ROOT}/Bryan_Hadro_Resume.pdf', 'rb'))
+    return FileResponse(open(f'{settings.STATIC_ROOT}/Bryan_Hadro_Resume.pdf?c=20241203', 'rb'))

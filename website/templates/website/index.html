@@ -1,4 +1,5 @@
 {% extends 'website/base.html' %}
+{% load static %}
 
 {% block 'head_static' %}
     {{ block.super }}
@@ -21,6 +22,54 @@
             .main-content-aside {
                 flex-basis:  50%;
             }
+        }
+
+        .portfolio-section {
+            flex-basis: 100%;
+            margin-top: 2rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 300px);
+            gap: 1.5rem;
+            padding: 1rem;
+            justify-content: center;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        .portfolio-item img {
+            width: 300px;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .portfolio-item a {
+            text-decoration: none;
+            color: white;
         }
     </style>
 {% endblock 'head_static' %}
@@ -45,6 +94,34 @@
             {% endfor %}
         </ul>
     </div>
+
+    <div class="portfolio-section">
+        <h2 id="portfolio">Portfolio</h2>
+        <p>Below are a few examples of various side projects I've worked on, in addition to my work at <a href="https://merchbar.com" target="_blank">Merchbar</a>, <a href="https://usnews.com" target="_blank">U.S. News &amp; World Report</a> and <a href="https://espn.com" target="_blank">ESPN</a>.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <a href="https://bevendo.app" target="_blank">
+                    <img src="{% static 'bevendo-app-2025-03-26-09_32_43_300x250.png' %}" alt="Bevendo App">
+                    <div class="portfolio-caption">Bevendo</div>
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://threestrikesband.com" target="_blank">
+                    <img src="{% static 'threestrikesband-2025-03-26-09_33_40_300x250.png' %}" alt="Three Strikes Band">
+                    <div class="portfolio-caption">Three Strikes Band Website</div>
+                </a>
+            </div>
+            <div class="portfolio-item">
+                <a href="https://whiskycreekramblers.com" target="_blank">
+                    <img src="{% static 'whiskycreekramblers-2025-03-26-09_33_14_300x250.png' %}" alt="Whisky Creek Ramblers">
+                    <div class="portfolio-caption">Whisky Creek Ramblers Band Website</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
 
 {% endblock 'content' %}

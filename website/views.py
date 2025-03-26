@@ -13,6 +13,7 @@ def index(request):
     context = {
         'title': 'BryanHadro.com - Homepage',
         'posts': posts[:5],
+        'static_root': settings.STATIC_ROOT,
     }
     return render(request, 'website/index.html', context)
 

@@ -18,4 +18,14 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 def resume(request):
-    return FileResponse(open(f'{settings.STATIC_ROOT}/Bryan-Hadro-Resume_2024-12-19.pdf', 'rb'))
+    response = FileResponse(open(f'{settings.STATIC_ROOT}/Bryan-Hadro_Resume.pdf', 'rb'))
+    
+    # add headers to prevent caching
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+
+    # add content disposition header for better download handling
+    response['Content-Disposition'] = 'inline; filename="Bryan-Hadro_Resume.pdf"'
+
+    return response

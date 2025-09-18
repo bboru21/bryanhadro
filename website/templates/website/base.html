@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{% static '/favicons/favicon.ico' %}" />
         {% if keywords %}
         <meta name="keywords" content="{{keywords|join:","}}" />
         {% endif %}
@@ -16,11 +18,11 @@
 
             /* css variables */
             :root {
-                /* Color Palettes: 
+                /* Color Palettes:
                     https://coolors.co/001514-fbfffe-6b0504-a3320b-e6af2e
                     https://coolors.co/a31621-bfdbf7-053c5e-1f7a8c-db222a
                 */
-                
+
                 --color-light-blue: #BFDBF7;
                 --color-lighter-blue: #f3f7ff;
                 --color-dark-red: #A31621;

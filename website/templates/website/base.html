@@ -91,14 +91,25 @@
                 border-bottom: 1px solid var(--color-blue);
                 padding-bottom: var(--padding-3);
             }
+            .menu img.menu-logo {
+                width: 32px;
+                height: 32px;
+                margin-right: 0.75rem;
+                display: none;
+                @media (min-width: 576px) {
+                    display: inline-block;
+                }
+            }
         </style>
 
         {% block 'head_static' %}
         {% endblock 'head_static' %}
     </head>
     <body>
+
         <!-- menu -->
         <div class="menu">
+            <img src="{% static '/logos/logo-blue-32x32.png' %}" class="menu-logo">
             <a href="{% url 'homepage' %}">Home</a>
             &#9670;
             <a href="{% url 'blog_index' %}">Blog</a>

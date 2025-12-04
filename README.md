@@ -27,3 +27,11 @@ If you wish to check current python packages:
 
     docker compose up
 
+## Troubleshooting
+
+Make changes, then run:
+
+    docker compose down -v
+    docker compose build --no-cache
+    docker compose up
+

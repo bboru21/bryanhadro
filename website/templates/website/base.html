@@ -54,13 +54,16 @@
                 font-family: var(--font-sans-serif);
                 font-size: var(--font-size-6);
                 line-height: 1.25rem;
-                padding: 1rem;
                 color: var(--color-blue);
                 background-color: var(--color-lighter-blue);
             }
 
             h1, h2, h3, h4, h5, h6 {
                 font-family: var(--font-serif);
+            }
+
+            #global-container {
+                padding: 1rem;
             }
 
             #content {
@@ -106,24 +109,30 @@
         {% endblock 'head_static' %}
     </head>
     <body>
-
-        <!-- menu -->
-        <div class="menu">
-            <img src="{% static '/logos/logo-blue-32x32.png' %}" class="menu-logo">
-            <a href="{% url 'homepage' %}">Home</a>
-            &#9670;
-            <a href="{% url 'blog_index' %}">Blog</a>
-            &#9670;
-            <a href="{% url 'music_index' %}">Music</a>
-            &#9670;
-            <a href="{% url 'resume' %}">Resume</a>
-            &#9670;
-            <a href="https://github.com/bboru21?tab=repositories" target="_blank">Github</a>
+        {% if debug %}
+        <div style="background-color: red; color: white; font-weight: bold; margin-bottom: 1rem; padding: 0.25rem; font-size: 1rem; text-align: center;">
+            DEBUG MODE ENABLED
         </div>
+        {% endif %}
+        <div id="global-container">
+            <!-- menu -->
+            <div class="menu">
+                <img src="{% static '/logos/logo-blue-32x32.png' %}" class="menu-logo">
+                <a href="{% url 'homepage' %}">Home</a>
+                &#9670;
+                <a href="{% url 'blog_index' %}">Blog</a>
+                &#9670;
+                <a href="{% url 'music_index' %}">Music</a>
+                &#9670;
+                <a href="{% url 'resume' %}">Resume</a>
+                &#9670;
+                <a href="https://github.com/bboru21?tab=repositories" target="_blank">Github</a>
+            </div>
 
-        <div id="content">
-            {% block 'content' %}
-            {% endblock 'content' %}
+            <div id="content">
+                {% block 'content' %}
+                {% endblock 'content' %}
+            </div>
         </div>
 
         <script>

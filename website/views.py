@@ -14,6 +14,7 @@ def index(request):
         'title': 'BryanHadro.com - Homepage',
         'posts': posts[:5],
         'static_root': settings.STATIC_ROOT,
+        'debug': settings.DEBUG,
     }
     return render(request, 'website/index.html', context)
 

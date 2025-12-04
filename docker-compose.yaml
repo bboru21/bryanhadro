@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    ports:
+      - "9000:9000"
+    volumes:
+      - static_volume:/app/staticfiles
+    environment:
+      DJANGO_SETTINGS_MODULE: website.settings.local
+
+volumes:
+  static_volume:

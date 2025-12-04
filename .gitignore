@@ -12,3 +12,4 @@ media/*
 !media/README.md
 assets/*
 !assets/README.md
+venv

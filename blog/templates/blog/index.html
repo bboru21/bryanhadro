@@ -8,8 +8,11 @@
         border-radius:  3px;
         background-color:  #CCC;
     }
-    .blog-post-container {
-        border-bottom:  1px solid #999;
+    .blog-post-container + .blog-post-container  {
+        border-top:  1px solid #999;
+    }
+    .blog-post-container img {
+        padding: 0.75rem;
     }
 </style>
 {% endblock 'head_static' %}
